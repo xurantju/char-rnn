@@ -70,8 +70,8 @@ local split_sizes = {opt.train_frac, opt.val_frac, test_frac}
 
 -- initialize cunn/cutorch for training on the GPU and fall back to CPU gracefully
 if opt.gpuid >= 0 and opt.opencl == 0 then
-    local ok, cunn = pcall(require, 'cunn')
-    local ok2, cutorch = pcall(require, 'cutorch')
+    ok, cunn = pcall(require, 'cunn')
+    ok2, cutorch = pcall(require, 'cutorch')
     if not ok then print('package cunn not found!') end
     if not ok2 then print('package cutorch not found!') end
     if ok and ok2 then
@@ -88,8 +88,8 @@ end
 
 -- initialize clnn/cltorch for training on the GPU and fall back to CPU gracefully
 if opt.gpuid >= 0 and opt.opencl == 1 then
-    local ok, cunn = pcall(require, 'clnn')
-    local ok2, cutorch = pcall(require, 'cltorch')
+    ok, cunn = pcall(require, 'clnn')
+    ok2, cutorch = pcall(require, 'cltorch')
     if not ok then print('package clnn not found!') end
     if not ok2 then print('package cltorch not found!') end
     if ok and ok2 then
@@ -328,5 +328,3 @@ for i = 1, iterations do
         break -- halt
     end
 end
-
-
